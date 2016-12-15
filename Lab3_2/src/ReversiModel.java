@@ -54,7 +54,7 @@ public class ReversiModel extends GameUtils {
         }
     }
 
-    private static final int UPDATE_DELAY = 50;
+    private static final int UPDATE_DELAY = -1;
 
     public enum Turn {
         BLACK,
