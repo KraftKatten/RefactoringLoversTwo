@@ -8,10 +8,8 @@ import java.beans.PropertyChangeListener;
  */
 public class ReversiScoreView  extends JComponent implements PropertyChangeListener {
 
-    ReversiModel model;
 
-    public ReversiScoreView(ReversiModel model) {
-        this.model = model;
+    public ReversiScoreView() {
 
     }
 
@@ -19,7 +17,11 @@ public class ReversiScoreView  extends JComponent implements PropertyChangeListe
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         repaint();
-        System.out.println("Black: "+model.getBlackScore()+ " White: "+model.getWhiteScore());
+
+        if (evt.getSource().getClass() == ReversiModel.class && evt.getPropertyName() == "Score Update"){
+            ReversiModel reversi = (ReversiModel) evt.getSource();
+            System.out.println("Black: "+reversi.getBlackScore()+ " White: "+reversi.getWhiteScore());
+        }
 
 
     }
@@ -31,10 +33,6 @@ public class ReversiScoreView  extends JComponent implements PropertyChangeListe
      */
     @Override
     public void paintComponent(final Graphics g) {
-        g.setColor(Color.cyan);
-
-        g.drawString("black "+model.getBlackScore(),1000,100);
-        g.drawString("white "+model.getWhiteScore(),1000,200);
 
     }
 }

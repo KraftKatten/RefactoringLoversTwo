@@ -117,6 +117,7 @@ public class GameController implements Runnable {
 
         // Start listening for key events
         this.view.addKeyListener(this.keyListener);
+        gameModel.addObserver(view);
 
         // Tell the view what to paint...
         this.view.setModel(gameModel);
@@ -127,7 +128,10 @@ public class GameController implements Runnable {
 
         // Create the new thread and start it...
         this.gameThread = new Thread(this);
-        this.gameThread.start();
+        if(gameModel.getUpdateSpeed() >= 0){
+            this.gameThread.start();
+        }
+
     }
 
     /**
@@ -163,12 +167,7 @@ public class GameController implements Runnable {
     @Override
     public void run() {
 
-        gameModel.addObserver(view);
-
-
         while (this.isRunning) {
-
-            if (gameModel.getUpdateSpeed() > -1) {
                 try {
                     // Tell model to update, send next key press.
                     // or 0 if no new keypress since last update.
@@ -188,6 +187,5 @@ public class GameController implements Runnable {
                     this.isRunning = false;
                 }
             }
-        }
     }
 }
