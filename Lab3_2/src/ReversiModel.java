@@ -22,7 +22,7 @@ public class ReversiModel extends GameUtils {
         pcs.addPropertyChangeListener(observer);
     }
 
-    public void removeObserver(PropertyChangeListener observer){
+    public void removeObserver(PropertyChangeListener observer) {
         pcs.removePropertyChangeListener(observer);
     }
 
@@ -53,6 +53,8 @@ public class ReversiModel extends GameUtils {
             return this.yDelta;
         }
     }
+
+    private static final int UPDATE_DELAY = 50;
 
     public enum Turn {
         BLACK,
@@ -154,13 +156,13 @@ public class ReversiModel extends GameUtils {
      * @return true if position is empty, false otherwise.
      */
     private boolean isPositionEmpty(final Position pos) {
-        if (this.board[pos.getX()][pos.getY()] == blankTile){
+        if (this.board[pos.getX()][pos.getY()] == blankTile) {
             return true;
         }
 
-        if (pos == cursorPos && getGameboardState(pos) instanceof CompositeTile){
+        if (pos == cursorPos && getGameboardState(pos) instanceof CompositeTile) {
             CompositeTile nTile = (CompositeTile) getGameboardState(pos);
-            return  nTile.getBottom() == blankTile;
+            return nTile.getBottom() == blankTile;
         }
 
         return false;
@@ -204,7 +206,7 @@ public class ReversiModel extends GameUtils {
                 turnOver(this.turn, this.cursorPos);
                 setGameboardState(board, this.cursorPos, t);
                 /*this.board[this.cursorPos.getX()][this.cursorPos.getY()] =
-						(this.turn == Turn.BLACK
+                        (this.turn == Turn.BLACK
 								? PieceColor.BLACK
 								: PieceColor.WHITE);*/
                 System.out.println("Bong! White: " + this.whiteScore
@@ -394,6 +396,11 @@ public class ReversiModel extends GameUtils {
             throw new GameOverException(this.blackScore - this.whiteScore);
         }
         pcs.firePropertyChange("Game Update", true, false);
+    }
+
+    @Override
+    public int getUpdateSpeed() {
+        return UPDATE_DELAY;
     }
 
     private void removeCursor(final Position oldCursorPos) {

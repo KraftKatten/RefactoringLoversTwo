@@ -62,6 +62,8 @@ public class GoldModel extends GameUtils {
 
     private static final int COIN_START_AMOUNT = 20;
 
+    private static final int UPDATE_DELAY = 100;
+
 	/*
      * The following GameTile objects are used only
 	 * to describe how to paint the specified item.
@@ -269,6 +271,10 @@ public class GoldModel extends GameUtils {
     private boolean isOutOfBounds(Position pos) {
         return pos.getX() < 0 || pos.getX() >= getGameboardSize().width
                 || pos.getY() < 0 || pos.getY() >= getGameboardSize().height;
+    }
+
+    public int getUpdateSpeed(){
+        return UPDATE_DELAY;
     }
 
 }
