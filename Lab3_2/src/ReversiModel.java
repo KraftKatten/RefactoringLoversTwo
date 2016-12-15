@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
@@ -12,15 +13,11 @@ import java.beans.PropertyChangeSupport;
  */
 public class ReversiModel extends GameUtils {
 
-    PropertyChangeSupport pcs;
+    PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
-    public void addObserver(
-            PropertyChangeListener observer) {
+    public void addObserver(PropertyChangeListener observer) {
         if (observer == null) {
-            return;
-        }
-        if (pcs == null) {
-            pcs = new PropertyChangeSupport(this);
+            throw new IllegalArgumentException();
         }
         pcs.addPropertyChangeListener(observer);
     }
@@ -396,6 +393,7 @@ public class ReversiModel extends GameUtils {
         } else {
             throw new GameOverException(this.blackScore - this.whiteScore);
         }
+        pcs.firePropertyChange("Game Update", true, false);
     }
 
     private void removeCursor(final Position oldCursorPos) {

@@ -18,15 +18,11 @@ import java.util.List;
  */
 public class GoldModel extends GameUtils {
 
-    PropertyChangeSupport pcs;
+    PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
-    public void addObserver(
-            PropertyChangeListener observer) {
+    public void addObserver(PropertyChangeListener observer) {
         if (observer == null) {
-            return;
-        }
-        if (pcs == null) {
-            pcs = new PropertyChangeSupport(this);
+            throw new IllegalArgumentException();
         }
         pcs.addPropertyChangeListener(observer);
     }
@@ -260,6 +256,9 @@ public class GoldModel extends GameUtils {
 
         // Add a new coin (simulating moving one coin)
         addCoin();
+
+        pcs.firePropertyChange("Game Update", false, true);
+
 
     }
 
