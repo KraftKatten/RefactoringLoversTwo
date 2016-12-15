@@ -5,7 +5,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 
+
 public class CrossTile implements GameTile {
+
 	/** The color of the cross */
 	private final Color color;
 	private final Stroke stroke;

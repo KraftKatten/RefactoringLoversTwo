@@ -3,13 +3,14 @@
  */
 public class GameFactory implements IGameFactory {
 
+
     /**
      * Returns an array with names of games this factory can create. Used by GUI
      * list availible games.
      */
     @Override
     public String[] getGameNames() {
-        return new String[]{"Reversi", "Gold"};
+        return new String[]{"Revers", "Gold"};
     }
 
     /**
@@ -24,8 +25,10 @@ public class GameFactory implements IGameFactory {
             return new GoldModel();
         }
 
-        if (gameName.equals("Reversi")) {
-            return new ReversiModel();
+        if (gameName.equals("Revers")) {
+            ReversiModel revers =new ReversiModel();
+            revers.addObserver(new ReversiScoreView(revers));
+return revers;
         }
 
         throw new IllegalArgumentException("No such game: " + gameName);

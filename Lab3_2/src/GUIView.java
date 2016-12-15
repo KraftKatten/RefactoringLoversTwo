@@ -14,26 +14,39 @@ import javax.swing.JPanel;
  * a GameFactory.
  */
 public class GUIView extends JPanel {
-	/** The "Start Game" button */
+	/**
+	 * The "Start Game" button
+	 */
 	private final JButton startGameButton;
 
-	/** The chooser (also called drop-down menu) with names of different games */
+	/**
+	 * The chooser (also called drop-down menu) with names of different games
+	 */
 	private final JComboBox gameChooser;
 
-	/** The game controller associated with the GameView */
+	/**
+	 * The game controller associated with the GameView
+	 */
 	private final GameController gameController;
 
-	/** The game view on this panel */
+	/**
+	 * The game view on this panel
+	 */
 	private final GameView gameView;
 
-	/** The panel with the gui-gadgets on this panel */
+	/**
+	 * The panel with the gui-gadgets on this panel
+	 */
 	private final JPanel guiPanel;
 
-	/** This is the factory which creates GameModels for us */
+	/**
+	 * This is the factory which creates GameModels for us
+	 */
 	private final IGameFactory gameFactory;
 
 	/**
 	 * Create a new GUIView. This will create a GameView and a GameController.
+	 *
 	 * @param factory The factory to use for creating games.
 	 */
 	@SuppressWarnings("synthetic-access")
@@ -107,5 +120,6 @@ public class GUIView extends JPanel {
 				GUIView.this.gameView.requestFocus();
 			}
 		}
+
 	}
 }
