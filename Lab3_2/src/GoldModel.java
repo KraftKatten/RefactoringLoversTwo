@@ -71,7 +71,7 @@ public class GoldModel extends GameUtils {
     /**
      * Graphical representation of a blank tile.
      */
-    private static final GameTile BLANK_TILE = new GameTile();
+    private static final GameTile BLANK_TILE = new BlankTile();
 
     /**
      * A list containing the positions of all coins.

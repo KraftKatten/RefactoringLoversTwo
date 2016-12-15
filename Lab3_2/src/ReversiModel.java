@@ -211,7 +211,7 @@ public class ReversiModel extends GameUtils {
             GameTile myColor =
                     (turn == Turn.BLACK ? blackGridTile : whiteGridTile);
 
-            GameTile opponentColor = new GameTile();
+            GameTile opponentColor;
 
             if (myColor.equals(blackGridTile)) {
                 opponentColor = whiteGridTile;
